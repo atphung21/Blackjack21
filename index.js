@@ -278,12 +278,11 @@ function checkDealer() {
 }
 
 
-
 function updateDiv() {
   $("#data-container").html(jQuery('#data-container').data('cache'))
 }
 
-//Removes all the player's cards that were in play. 
+//Removes all the player's cards that were in play by removing the child.
 function removeChildPlayer() {
   let element = document.getElementById("playerContainer");
   while (element.firstChild) {
@@ -291,7 +290,7 @@ function removeChildPlayer() {
   }
 }
 
-//Removes all the dealer's cards that were in play.
+//Removes all the dealer's cards that were in play by removing the child.
 function removeChildDealer() {
   let element = document.getElementById("dealerContainer");
   while (element.firstChild) {
