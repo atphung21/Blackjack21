@@ -136,6 +136,7 @@ h1 {
 	margin-right: 50px;
 	float: left;
 	width: 50%;
+	flex-wrap: row;
 	
 }
 
@@ -143,4 +144,10 @@ h1 {
 	margin-left: 50px;
 	float: right;
 	width: 50%;
+	flex-wrap: row;
+}
+
+.secondDealer {
+	opacity: 80%;
+	filter: blur(15px);
 }

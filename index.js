@@ -1,12 +1,12 @@
-//I only watch one youtube tutorial to get started and read two articles. Mainly I took code from thatsoftwaredude & devdojo to start for creating a deck and shuffling inputting my own modifications. I've commented the two functions and cited my work. From there I decided formulate my own way of creating the game so it is a bit messy.
+//I watched one youtube tutorial to get started and read two articles. I took ideas and a few lines of code from thatsoftwaredude & devdojo for creating a deck and shuffling. I added a lot more of my own modifications. The rest were mainly w3schools,developer mozilla, and educational sites and also lots and lots of debugging & console.log. I've commented on the two functions and cited my work. From there I decided formulate my own way of creating the game so it is a bit messy. I didn't have enough time given I was asked to go back to work until I know if I am accepted. 
 
 /*Sources
 - Took SVG card images from http://richardschneider.github.io/cardsJS/;
 - Deck idea from https://www.thatsoftwaredude.com/content/6417/how-to-code-blackjack-using-javascript;
 - Shuffle deck https://devdojo.com/devdojo/create-a-deck-of-cards-in-javascript;
+- https://www.youtube.com/watch?v=oT49KkhOv-Y
 */
 
-//window.alert("Hello! Ready to play a game of Blackjack? Press Start Game to play.");
 
 //Global variables 
 let playerHand = []; // Player's Hand
@@ -25,10 +25,39 @@ document.getElementById("playerHandValue").innerHTML = "Player Score: " + getHan
 
 document.getElementById("dealerHandValue").innerHTML = "Dealer Score: " + getHandValue(dealerHand, dealerHandValue); // Displays dealer's score;
 
+//Disable the "Hit" and "Stand" button until a game has started.
+function enableButton(){
+$('#newGameButton').click(function () { 
+  $('#hitButton').removeAttr('disabled');
+  $('#standButton').removeAttr('disabled');
+});
+}
+enableButton();
 
+function flipDealer(){
+  $('#standButton').click(function () { 
+    $('.secondDealer').removeClass('secondDealer');
+  });
+};
+flipDealer();
+
+//function animateCard() {
+$('#newGameButton').click(function() {
+  var interval = 100;
+
+  $('.cardImage').each(function () {
+      var self = this;
+      setTimeout(function() {
+          $(self).slideDown();
+      }, interval);
+
+      interval += 200;
+  });
+  })
+//};
+//animateCard()
 /*Renders the player's card on screen using html. I started with divs, but img allowed me to have it side by side. Images were taken from http://richardschneider.github.io/cardsJS/ */
 function renderPlayer() {
-  console.log(playerHand.length, "render player")
   if (playerHand.length == 2) {
     for (i = 0; i < playerHand.length; i++) {
       var img = new Image();
@@ -78,7 +107,7 @@ function getHandValue(hand, value) {
 
   for (i = 0; i < handValue.length; i++) {
     if (handValue[i] == 11) {
-      aceCount++
+      aceCount++;
     }
     score += handValue[i];
   }
@@ -128,9 +157,9 @@ function newGame() {
 //Creating a deck of 52 Cards
 //Basic deck idea came from: https://www.thatsoftwaredude.com/content/6196/coding-a-card-deck-in-javascript, I modified it parse integer value and added an image property so I could render the cards.
 function createDeck() {
-  const suits = ["Spades", "Diamonds", "Clubs", "Hearts"]
-  const values = ["A", 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K"]
-  let deck = []
+  const suits = ["Spades", "Diamonds", "Clubs", "Hearts"];
+  const values = ["A", 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K"];
+  let deck = [];
   for (i = 0; i < suits.length; i++) {
     for (j = 0; j < values.length; j++) {
       let intValue = parseInt(values[i])
@@ -148,15 +177,13 @@ function createDeck() {
       deck.push(cards);
     }
   }
-  console.log(deck)
-  console.log(deck[0].Value + deck[0].Suit[0])
-  console.log(deck[0].Suit[0])
+  
   return deck;
 }
 
 
 
-//Shuffling the deck. Idea taken from:
+//Shuffling the deck. Idea & code taken from: https://devdojo.com/devdojo/create-a-deck-of-cards-in-javascript with my own modifications ofcourse;
 function shuffleDeck() {
   for (let i = 0; i < 1000; i++) {
     let card1 = Math.floor((Math.random() * deck.length));
@@ -201,7 +228,6 @@ function hitCard(hand, value) { //Argument dealerHand when needed hitCard(dealer
   cardCount();
   check();
   renderPlayer();
-  console.log(playerHand, getHandValue(playerHand, playerHandValue), "Player");
 }
 
 //When player stands and ends turn. Checks if dealer is under 17, if so dealer will draw until reaches 17 or higher.
@@ -211,23 +237,21 @@ function stay() {
   if (dealerScore < 17) {
     do {
       let dealerHit = deck.pop();
-      dealerHand.push(dealerHit)
+      dealerHand.push(dealerHit);
       renderDealer();
       document.getElementById("dealerHandValue").innerHTML = "Dealer Score: " + getHandValue(dealerHand, dealerHandValue);
-      getHandValue(dealerHand, dealerHandValue)
-      dealerScore = getHandValue(dealerHand, dealerHandValue)
-      cardCount()
+      getHandValue(dealerHand, dealerHandValue);
+      dealerScore = getHandValue(dealerHand, dealerHandValue);
+      cardCount();
     }
     while (dealerScore <= 17)
-    checkDealer()
-    console.log(dealerHand, getHandValue(dealerHand, dealerHandValue), "dealer score")
+    checkDealer();
   }
   else if (dealerScore >= 17) {
-    getHandValue(dealerHand, dealerHandValue)
+    getHandValue(dealerHand, dealerHandValue);
     document.getElementById("dealerHandValue").innerHTML = "Dealer Score: " + getHandValue(dealerHand, dealerHandValue);
     checkDealer();
     cardCount();
-    console.log(dealerHand, getHandValue(dealerHand, dealerHandValue), "dealer score");
   }
 }
 
@@ -235,10 +259,12 @@ function stay() {
 function cardCount() {
   deckCount = deck.length
   document.getElementById("deckCount").innerHTML = "Cards Remaining: " + deckCount;
-  if (deckCount <= 0) {
+  if (deckCount == 0) {
+    window.alert("Oh no, out of cards. Click 'New Game' to get a new deck!");
+    document.getElementById("message").innerHTML = "Oh no, out of cards. Click 'New Game' to get a new deck!";
     window.location.reload();
   }
-  return deckCount
+    return deckCount;
 }
 
 //Check player score and to see if they busted.
@@ -279,7 +305,7 @@ function checkDealer() {
 
 
 function updateDiv() {
-  $("#data-container").html(jQuery('#data-container').data('cache'))
+  $("#data-container").html(jQuery('#data-container').data('cache'));
 }
 
 //Removes all the player's cards that were in play by removing the child.
