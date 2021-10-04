@@ -48,7 +48,6 @@ h1 {
 	font-family: sans-serif;
 	opacity: 100%;
 	text-shadow: 2px 2px rgba(0,0,0,0.6);
-
 }
 
 .score {
@@ -63,9 +62,7 @@ h1 {
 	opacity: 100%;
 	text-shadow: 2px 2px rgba(0,0,0,0.6);
 	margin-bottom: 20px;
-
 }
-
 
 .playerScore {
 	float: left;
@@ -80,8 +77,6 @@ h1 {
 	padding-left: 20px;
 	width: 50%;
 }
-
-
 
 .button {
 	background-color: lightgray;
@@ -117,9 +112,7 @@ h1 {
 	margin-bottom: 50px;
 	position: static;
 	border-bottom-width: 10px;
-
 }
-
 
 .cardImage {
 	width: 110px;
@@ -129,7 +122,6 @@ h1 {
 	display: inline-flex;
 	margin-top: 10px;
 	width: 90%;
-
 }
 
 #playerContainer {

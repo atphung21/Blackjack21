@@ -1,4 +1,4 @@
-//I watched one youtube tutorial to get started and read two articles. I took ideas and a few lines of code from thatsoftwaredude & devdojo for creating a deck and shuffling. I added a lot more of my own modifications. The rest were mainly w3schools,developer mozilla, and educational sites and also lots and lots of debugging & console.log. I've commented on the two functions and cited my work. From there I decided formulate my own way of creating the game so it is a bit messy. I didn't have enough time given I was asked to go back to work until I know if I am accepted. 
+/* I watched one youtube tutorial to get started and read two articles. I took ideas from a few lines of code from thatsoftwaredude & devdojo for creating a deck and shuffling. I added a lot more of my own modifications. The rest were mainly w3schools,developer mozilla, and other educational sites with also lots and lots of debugging & console.log. I've commented on the two functions and cited my work. From there I decided formulated my own way of creating the game so it is a bit messy. I didn't have enough time given I was asked to go back to work until I know if I am accepted. Wished I had more time to animate the cards. Thanks for reviewing my code. */
 
 /*Sources
 - Took SVG card images from http://richardschneider.github.io/cardsJS/;
@@ -25,37 +25,25 @@ document.getElementById("playerHandValue").innerHTML = "Player Score: " + getHan
 
 document.getElementById("dealerHandValue").innerHTML = "Dealer Score: " + getHandValue(dealerHand, dealerHandValue); // Displays dealer's score;
 
+
 //Disable the "Hit" and "Stand" button until a game has started.
-function enableButton(){
-$('#newGameButton').click(function () { 
-  $('#hitButton').removeAttr('disabled');
-  $('#standButton').removeAttr('disabled');
-});
+function enableButton() {
+  $('#newGameButton').click(function () {
+    $('#hitButton').removeAttr('disabled');
+    $('#standButton').removeAttr('disabled');
+  });
 }
 enableButton();
 
-function flipDealer(){
-  $('#standButton').click(function () { 
+//Once the stand button is pressed the dealer's second card will display.
+function flipDealer() {
+  $('#standButton').click(function () {
     $('.secondDealer').removeClass('secondDealer');
   });
 };
 flipDealer();
 
-//function animateCard() {
-$('#newGameButton').click(function() {
-  var interval = 100;
 
-  $('.cardImage').each(function () {
-      var self = this;
-      setTimeout(function() {
-          $(self).slideDown();
-      }, interval);
-
-      interval += 200;
-  });
-  })
-//};
-//animateCard()
 /*Renders the player's card on screen using html. I started with divs, but img allowed me to have it side by side. Images were taken from http://richardschneider.github.io/cardsJS/ */
 function renderPlayer() {
   if (playerHand.length == 2) {
@@ -148,7 +136,7 @@ function newGame() {
   renderDealer();
   document.getElementById("message").innerHTML = "Player's Turn, click 'Hit' to draw or 'Stand' to end turn!";
   document.getElementById("playerHandValue").innerHTML = "Player Score: " + getHandValue(playerHand, playerHandValue);
-  document.getElementById("dealerHandValue").innerHTML = "Dealer Score: " + getHandValue(dealerHand, dealerHandValue);
+  document.getElementById("dealerHandValue").innerHTML = "Dealer Score: " + dealerHand[0].IntValue;
   cardCount();
 }
 
@@ -177,7 +165,7 @@ function createDeck() {
       deck.push(cards);
     }
   }
-  
+
   return deck;
 }
 
@@ -264,7 +252,7 @@ function cardCount() {
     document.getElementById("message").innerHTML = "Oh no, out of cards. Click 'New Game' to get a new deck!";
     window.location.reload();
   }
-    return deckCount;
+  return deckCount;
 }
 
 //Check player score and to see if they busted.
@@ -272,7 +260,6 @@ function check() {
   let score = getHandValue(playerHand, playerHandValue)
   if (score > 21) {
     document.getElementById("message").innerHTML = "Busted, you lose! Click 'New Game' to play again!";
-    window.alert("Busted, you lose! Click 'New Game' to play again!")
   }
 }
 
@@ -282,31 +269,19 @@ function checkDealer() {
   let dealerScore = getHandValue(dealerHand, dealerHandValue);
   if (playerScore > dealerScore && dealerScore > 16 && dealerScore <= 21) {
     document.getElementById("message").innerHTML = "Nice, you won! Click 'New Game' to play again!";
-    //removeChild()
-    window.alert("Nice, you won! Click 'New Game' to play again!");
   }
   if (playerScore < dealerScore && dealerScore > 16 && dealerScore <= 21) {
     document.getElementById("message").innerHTML = "You lost! Click 'New Game' to play again!";
-    //removeChild()
-    window.alert("You lost! Click 'New Game' to play again!");
   }
   if (playerScore == dealerScore && dealerScore > 16) {
     document.getElementById("message").innerHTML = "Tie Game! Click 'New Game' to play again!";
-    //removeChild()
-    window.alert("Tie Game! Click 'New Game' to play again!");
   }
   if (dealerScore > 21) {
     document.getElementById("message").innerHTML = "Dealer busted! You won! Click 'New Game' to play again!";
-    //removeChild()
-    window.alert("Dealer busted! You won! Click 'New Game' to play again!");
   }
 
 }
 
-
-function updateDiv() {
-  $("#data-container").html(jQuery('#data-container').data('cache'));
-}
 
 //Removes all the player's cards that were in play by removing the child.
 function removeChildPlayer() {
