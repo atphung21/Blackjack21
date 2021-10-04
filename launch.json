@@ -1,0 +1,22 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Attach to Chrome",
+            "port": 5500,
+            "request": "launch",
+            "type": "pwa-chrome",
+            "webRoot": "/Users/andytphung/JS Code/"
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Chrome against localhost",
+            "url": "http://localhost:49894",
+            "webRoot": "/Users/andytphung/JS Code/.vscode/index.js/"
+        },
+ 
+       
+        
+    ]
+}

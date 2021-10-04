@@ -1,0 +1,49 @@
+{
+  "folders": [
+    {
+      "name": ".vscode",
+      "path": "."
+    },
+    {
+      "name": "cards",
+      "path": "../../Downloads/richardschneider-cardsJS-fe5e857/cards"
+    }
+  ],
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [
+    {
+      "name": "Launch Chrome",
+      "request": "launch",
+      "type": "pwa-chrome",
+      "url": "http://localhost:5500",
+      "webRoot": "${workspaceFolder}"
+    },
+      {
+        "name": "Launch Edge",
+        "request": "launch",
+        "type": "pwa-msedge",
+        "url": "http://localhost:8080",
+        "webRoot": "${workspaceFolder}"
+      },
+    {
+      "name": "Attach to Chrome",
+      "port": 9222,
+      "request": "attach",
+      "type": "pwa-chrome",
+      "webRoot": "${workspaceFolder}"
+    },
+      {
+        "type": "edge",
+        "version": "stable",
+        "request": "launch",
+        "name": "Launch Edge against localhost",
+        "url": "http://localhost:8080",
+        "webRoot": "${workspaceFolder}"
+      }
+    ]
+  },
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": ".vscode"
+  }
+}

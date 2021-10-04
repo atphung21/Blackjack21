@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>AndyTPhung's Blackjack Game!</title>
+
+  <link rel="stylesheet" href="index.css" type="text/css">
+  <link rel="icon" type="img/jpg" href="./blackjack-icon.jpeg">
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+  </script>
+</head>
+
+<body>
+
+  <h1>Blackjack</h1>
+
+  <div id="message">Ready to play Blackjack? Press 'New Game' to start!</div>
+
+  <div class="score">
+    <div class="playerScore">
+      <p></p><span id="playerHandValue"></span>
+    </div>
+    <div class="dealerScore"><span id="dealerHandValue"></span></div>
+  </div>
+
+  <div id="div1"></div>
+
+  <div id="blackjack-table">
+    <div id="playerContainer">
+    </div>
+    <div id="dealerContainer">
+    </div>
+  </div>
+  <div id="hitStay" class="hitStay">
+    <button id="hitButton" class="button hit" onclick="hitCard(playerHand)">Hit</button>
+    <button id="standButton" class="button stand" onclick="stay()">Stand</button>
+  </div>
+
+  <div class="new-game">
+    <button id="newGameButton" class="button" onclick="newGame()">New Game</button>
+  </div>
+
+  <div id="deckCount"><span class="deckCount"></span></div>
+
+
+
+  <script src="index.js">
+  </script>
+
+</body>
+
+</html>
