@@ -1,6 +1,10 @@
 //I only watch one youtube tutorial to get started and read two articles. Mainly I took code from thatsoftwaredude & devdojo to start for creating a deck and shuffling inputting my own modifications. I've commented the two functions and cited my work. From there I decided formulate my own way of creating the game so it is a bit messy.
 
-//Took card images from http://richardschneider.github.io/cardsJS/
+/*Sources
+- Took SVG card images from http://richardschneider.github.io/cardsJS/;
+- Deck idea from https://www.thatsoftwaredude.com/content/6417/how-to-code-blackjack-using-javascript;
+- Shuffle deck https://devdojo.com/devdojo/create-a-deck-of-cards-in-javascript;
+*/
 
 //window.alert("Hello! Ready to play a game of Blackjack? Press Start Game to play.");
 
@@ -14,83 +18,56 @@ let shuffle = shuffleDeck();//Shuffled Deck
 let deckCount = 0; //Cards remaining 
 
 
-//document.getElementById("message").innerHTML = "Player Turn, click hit to draw!";
-document.getElementById("deckCount").innerHTML = "Cards Remaning: " + deckCount;
 
-document.getElementById("playerHandValue").innerHTML = "Player Score: " + getHandValue(playerHand, playerHandValue); //Displays player's Score
+document.getElementById("deckCount").innerHTML = "Cards Remaining: " + deckCount; //Cards remaining in deck;
 
-document.getElementById("dealerHandValue").innerHTML = "Dealer Score: " + getHandValue(dealerHand, dealerHandValue); // Displays dealer's score
+document.getElementById("playerHandValue").innerHTML = "Player Score: " + getHandValue(playerHand, playerHandValue); //Displays player's Score;
+
+document.getElementById("dealerHandValue").innerHTML = "Dealer Score: " + getHandValue(dealerHand, dealerHandValue); // Displays dealer's score;
 
 
-//document.getElementById("cards").innerHTML = playerHand;
-//dealerHand[i].Value
+/*Renders the player's card on screen using html. I started with divs, but img allowed me to have it side by side. Images were taken from http://richardschneider.github.io/cardsJS/ */
 function renderPlayer() {
   console.log(playerHand.length, "render player")
   if (playerHand.length == 2) {
     for (i = 0; i < playerHand.length; i++) {
       var img = new Image();
       img.src = playerHand[i].ImageSrc;
-      img.className='cardImage';
+      img.className = 'cardImage';
       document.getElementById("playerContainer").append(img);
     }
   }
   else if (playerHand.length > 2) {
     var img = new Image();
-    img.src = playerHand[playerHand.length-1].ImageSrc;
-    img.className='cardImage';
+    img.src = playerHand[playerHand.length - 1].ImageSrc;
+    img.className = 'cardImage';
     document.getElementById("playerContainer").append(img);
   }
 }
 
+/*Renders the dealer's cards on webpage using html.*/
 function renderDealer() {
   if (dealerHand.length == 2) {
-    for (j = 0; j < dealerHand.length; j++) {
-      var img = new Image();
-      img.src = dealerHand[j].ImageSrc;
-      img.className='cardImage';
-      document.getElementById("dealerContainer").append(img);
-    }
+    var imgFirst = new Image();
+    var imgSecond = new Image();
+    imgFirst.src = dealerHand[0].ImageSrc;
+    imgFirst.id = "cards";
+    imgSecond.src = dealerHand[1].ImageSrc;
+    imgSecond.id = "cards";
+    imgFirst.className = 'cardImage firstDealer';
+    imgSecond.className = 'cardImage secondDealer';
+    document.getElementById("dealerContainer").append(imgFirst);
+    document.getElementById("dealerContainer").append(imgSecond);
   }
+
   else if (dealerHand.length > 2) {
     var img = new Image();
-    img.src = dealerHand[dealerHand.length-1].ImageSrc;
-    img.className='cardImage';
+    img.src = dealerHand[dealerHand.length - 1].ImageSrc;
+    img.id = "cards";
+    img.className = 'cardImage';
     document.getElementById("dealerContainer").append(img);
   }
 }
-
-
-// function renderDealerOld() {
-//   if (dealerHand.length == 2) {
-//     for (j = 0; j < dealerHand.length; j++) {
-//       console.log(dealerHand.length, "Dealer hand length")
-//       div = document.createElement('div');
-//       div.className = 'cards dealerCard';
-//       div.id = "card";
-//       // div.innerHTML = '<span class="number">' + dealerHand[j].Value +' </span><span class="suit">' + dealerHand[j].Suit.toLowerCase() + ' </span>';
-//       div.innerHTML = '<img src="' + dealerHand[j].ImageSrc + '">';
-//       document.body.appendChild(div);
-//       let currentDiv = document.getElementById("hitStay");
-//       document.body.insertBefore(div, currentDiv);
-//       $("#card").wrapAll("<div class='cardParent'></div>").parent();
-//       // $(".dealerCard").wrapAll("<div class='dealerCardParent'></div>").parent();
-//       // $("#card").wrapAll("<div class='cardParent'></div>").parent();
-//       // $(".playerCard").wrapAll("<div class='playerCardParent'></div>").parent();
-//     }
-//   }
-//   else if (dealerHand.length > 2) {
-//     div = document.createElement('div')
-//     div.className = 'cards dealerCard'
-//     div.id = "card"
-//     div.innerHTML = '<span class="number">' + dealerHand[dealerHand.length - 1].Value + ' </span><span class="suit">' + dealerHand[dealerHand.length - 1].Suit.toLowerCase() + ' </span>';
-//     document.body.appendChild(div);
-//     let currentDiv = document.getElementById("hitStay");
-//     document.body.insertBefore(div, currentDiv)
-
-//   }
-// }
-
-
 
 //Gets the value of the player's or dealer's hand. Agruments to input are (playerHand, playerHandValue) & (dealerHand, dealerHandValue)
 function getHandValue(hand, value) {
@@ -133,34 +110,26 @@ function getHandValue(hand, value) {
 
 //Start the game by creating deck, shuffling, and dealing cards. I coded it to continue using the same deck until the cards run out then page will refresh hence new deck.
 function newGame() {
+  removeChildPlayer();
+  removeChildDealer();
   createDeck();
   shuffleDeck();
   dealCards();
   renderPlayer();
   renderDealer();
-  console.log(dealerHand, "dealer hand")
-  console.log(playerHand, "playerHand")
-  console.log(playerHand[1].Value)
-  //document.getElementById("cards").innerHTML = playerHand.Value;
   document.getElementById("message").innerHTML = "Player's Turn, click 'Hit' to draw or 'Stand' to end turn!";
   document.getElementById("playerHandValue").innerHTML = "Player Score: " + getHandValue(playerHand, playerHandValue);
   document.getElementById("dealerHandValue").innerHTML = "Dealer Score: " + getHandValue(dealerHand, dealerHandValue);
   cardCount();
-  // $(".playerCard").wrapAll("<div class='playerCardParent'></div>").parent();
-
 }
 
-function getCardImageName(value, suit) {
-  // if(true){}
-  return "JS";
-}
+
 
 //Creating a deck of 52 Cards
-//Used "For" loop to iteriate Suites and Values to create a new array of objects. Added in an image property to link to the card.
-//Basic deeck idea came from: https://www.thatsoftwaredude.com/content/6196/coding-a-card-deck-in-javascript, I modified it parse integer 
+//Basic deck idea came from: https://www.thatsoftwaredude.com/content/6196/coding-a-card-deck-in-javascript, I modified it parse integer value and added an image property so I could render the cards.
 function createDeck() {
   const suits = ["Spades", "Diamonds", "Clubs", "Hearts"]
-  const values = ["Ace", 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K"]
+  const values = ["A", 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K"]
   let deck = []
   for (i = 0; i < suits.length; i++) {
     for (j = 0; j < values.length; j++) {
@@ -168,19 +137,23 @@ function createDeck() {
       if (values[j] == "J" || values[j] == "Q" || values[j] == "K") {
         intValue = 10;
       }
-      else if (values[j] === "Ace") {
+      else if (values[j] === "A") {
         intValue = 11;
       }
-      else if (values[j] != "J" || values[j] != "Q" || values[j] != "K" || values[j] != "Ace") {
+      else if (values[j] != "J" || values[j] != "Q" || values[j] != "K" || values[j] != "A") {
         intValue = values[j];
       }
-      const cardImageName = getCardImageName(values[j], suits[i]);
+      const cardImageName = values[j] + suits[i][0];
       let cards = { Value: values[j], Suit: suits[i], IntValue: intValue, ImageSrc: "/cards/" + cardImageName + ".svg" };
       deck.push(cards);
     }
   }
+  console.log(deck)
+  console.log(deck[0].Value + deck[0].Suit[0])
+  console.log(deck[0].Suit[0])
   return deck;
 }
+
 
 
 //Shuffling the deck. Idea taken from:
@@ -231,7 +204,7 @@ function hitCard(hand, value) { //Argument dealerHand when needed hitCard(dealer
   console.log(playerHand, getHandValue(playerHand, playerHandValue), "Player");
 }
 
-//When player stands. Checks if dealer is under 17, if so dealer will draw until reaches 17 or higher.
+//When player stands and ends turn. Checks if dealer is under 17, if so dealer will draw until reaches 17 or higher.
 function stay() {
   document.getElementById("message").innerHTML = "Dealer's Turn!";
   let dealerScore = getHandValue(dealerHand, dealerHandValue);
@@ -247,11 +220,9 @@ function stay() {
     }
     while (dealerScore <= 17)
     checkDealer()
-    renderDealer()
     console.log(dealerHand, getHandValue(dealerHand, dealerHandValue), "dealer score")
   }
   else if (dealerScore >= 17) {
-    renderDealer()
     getHandValue(dealerHand, dealerHandValue)
     document.getElementById("dealerHandValue").innerHTML = "Dealer Score: " + getHandValue(dealerHand, dealerHandValue);
     checkDealer();
@@ -263,7 +234,7 @@ function stay() {
 //Count how many manys remaining. I set it the page to refresh when the card count is 0 so a new deck is out and player could continue playing.
 function cardCount() {
   deckCount = deck.length
-  document.getElementById("deckCount").innerHTML = "Cards Remaning: " + deckCount;
+  document.getElementById("deckCount").innerHTML = "Cards Remaining: " + deckCount;
   if (deckCount <= 0) {
     window.location.reload();
   }
@@ -285,49 +256,46 @@ function checkDealer() {
   let dealerScore = getHandValue(dealerHand, dealerHandValue);
   if (playerScore > dealerScore && dealerScore > 16 && dealerScore <= 21) {
     document.getElementById("message").innerHTML = "Nice, you won! Click 'New Game' to play again!";
+    //removeChild()
     window.alert("Nice, you won! Click 'New Game' to play again!");
   }
   if (playerScore < dealerScore && dealerScore > 16 && dealerScore <= 21) {
     document.getElementById("message").innerHTML = "You lost! Click 'New Game' to play again!";
+    //removeChild()
     window.alert("You lost! Click 'New Game' to play again!");
   }
   if (playerScore == dealerScore && dealerScore > 16) {
     document.getElementById("message").innerHTML = "Tie Game! Click 'New Game' to play again!";
+    //removeChild()
     window.alert("Tie Game! Click 'New Game' to play again!");
   }
   if (dealerScore > 21) {
     document.getElementById("message").innerHTML = "Dealer busted! You won! Click 'New Game' to play again!";
+    //removeChild()
     window.alert("Dealer busted! You won! Click 'New Game' to play again!");
+  }
+
+}
+
+
+
+function updateDiv() {
+  $("#data-container").html(jQuery('#data-container').data('cache'))
+}
+
+//Removes all the player's cards that were in play. 
+function removeChildPlayer() {
+  let element = document.getElementById("playerContainer");
+  while (element.firstChild) {
+    element.removeChild(element.firstChild);
   }
 }
 
-document.getElementById("deckCount").innerHTML = "Cards Remaning: " + deckCount;
-//Taken from dev
-window.onload = playerHand;
+//Removes all the dealer's cards that were in play.
+function removeChildDealer() {
+  let element = document.getElementById("dealerContainer");
+  while (element.firstChild) {
+    element.removeChild(element.firstChild);
+  }
+}
 
-// function deckUI() {
-
-//   for(var i=0; i < deck.length; i++){
-//     div = document.createElement('div');
-//     div.className = 'card';
-
-//     if(deck[i].Suit == 'Diamonds'){
-//       var ascii_char = '&diams;';
-//     } else {
-//       var ascii_char = '&' + deck[i].Suit.toLowerCase() + ';';
-//     }
-
-//     div.innerHTML = '<span class="number">' + deck[i].Value + '</span><span class="suit">' + ascii_char + '</span>';
-//     document.body.appendChild(div);
-//   }
-// }
-
-//JQuery
-// $(".playerCard").wrapAll("<div class='playerCardParent'></div>").parent();
-// $(".dealerCard").wrapAll("<div class='dealerCardParent'></div>").parent();
-
-
-// $("#card").wrapAll("<div class='cardParent'></div>").parent();
-
-
-//  $("h1").text("hello");
