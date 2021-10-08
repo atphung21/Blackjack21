@@ -26,6 +26,15 @@ document.getElementById("playerHandValue").innerHTML = "Player Score: " + getHan
 document.getElementById("dealerHandValue").innerHTML = "Dealer Score: " + getHandValue(dealerHand, dealerHandValue); // Displays dealer's score;
 
 
+//Disables "Hit" and "Stand" buttons after the user ends turn by clicking on the "Stand Button"
+function disableStandHit(){
+  $('#standButton').click(function (){
+    $('#hitButton').attr('disabled', 'disabled');
+    $('#standButton').attr('disabled', 'disabled');
+  })
+}
+disableStandHit();
+
 //Disable the "Hit" and "Stand" button until a game has started.
 function enableButton() {
   $('#newGameButton').click(function () {
@@ -241,6 +250,7 @@ function stay() {
     checkDealer();
     cardCount();
   }
+  
 }
 
 //Count how many manys remaining. I set it the page to refresh when the card count is 0 so a new deck is out and player could continue playing.
@@ -260,6 +270,8 @@ function check() {
   let score = getHandValue(playerHand, playerHandValue)
   if (score > 21) {
     document.getElementById("message").innerHTML = "Busted, you lose! Click 'New Game' to play again!";
+    $('#standButton').attr('disabled', 'disabled');
+    $('#hitButton').attr('disabled', 'disabled');
   }
 }
 
