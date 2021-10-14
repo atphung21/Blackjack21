@@ -1,5 +1,3 @@
-/* I watched one youtube tutorial to get started and read two articles. I took ideas from a few lines of code from thatsoftwaredude & devdojo for creating a deck and shuffling. I added a lot more of my own modifications. The rest were mainly w3schools,developer mozilla, and other educational sites with also lots and lots of debugging & console.log. I've commented on the two functions and cited my work. From there I decided formulated my own way of creating the game so it is a bit messy. I didn't have enough time given I was asked to go back to work until I know if I am accepted. Wished I had more time to animate the cards. Thanks for reviewing my code. */
-
 /*Sources
 - Took SVG card images from http://richardschneider.github.io/cardsJS/;
 - Deck idea from https://www.thatsoftwaredude.com/content/6417/how-to-code-blackjack-using-javascript;
@@ -25,8 +23,8 @@ document.getElementById("playerHandValue").innerHTML = "Player Score: " + getHan
 
 document.getElementById("dealerHandValue").innerHTML = "Dealer Score: " + getHandValue(dealerHand, dealerHandValue); // Displays dealer's score;
 
-
-//Disables "Hit" and "Stand" buttons after the user ends turn by clicking on the "Stand Button"
+/*New function below and also updated the check() function.
+Disables "Hit" and "Stand" buttons after the user ends turn by clicking on the "Stand Button". */
 function disableStandHit(){
   $('#standButton').click(function (){
     $('#hitButton').attr('disabled', 'disabled');
