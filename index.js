@@ -168,7 +168,7 @@ function createDeck() {
         intValue = values[j];
       }
       const cardImageName = values[j] + suits[i][0];
-      let cards = { Value: values[j], Suit: suits[i], IntValue: intValue, ImageSrc: "https://raw.githubusercontent.com/atphung21/Blackjack21/89813d7e2d6cd9591e5c82a8f0428ea85243b5e9/cards/" + cardImageName + ".svg" };
+      let cards = { Value: values[j], Suit: suits[i], IntValue: intValue, ImageSrc: "/cards/" + cardImageName + ".svg" };
       deck.push(cards);
     }
   }
