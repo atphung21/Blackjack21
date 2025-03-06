@@ -1,5 +1,4 @@
-
-@import url(https://fonts.googleapis.com/css?family=Satisfy); 
+@import url(https://fonts.googleapis.com/css?family=Satisfy);
 @import url(https://fonts.googleapis.com/css?family=Six+Caps);
 
 * {
@@ -8,7 +7,35 @@
 }
 
 * {
-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+#header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 16px;
+	background-color: "#edf2f7"; 
+	color: rgba(0, 0, 0, 0.7);
+}
+
+#header-logo {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	justify-content: "center";
+}
+
+#header-logo-image {
+	width: 3rem;
+	border-radius: 1rem;
+	justify-content: center;
+}
+
+#header-logo-text {
+	font-size: 100%;
+	 font-weight: bold; 
+	 font-family: Helvetica;
 }
 
 #returnLink {
@@ -16,35 +43,35 @@ box-sizing: border-box;
 	margin: 10px;
 	padding: 10px;
 	text-align: left;
-	height: 5.5rem;
+	height: 10%;
+	width: 15%;
 	background-repeat: no-repeat;
-  	background-attachment: left;
-  	background-position: left;
+	background-attachment: left;
+	background-position: left;
 	font-family: 'Six Caps', sans-serif;
 	font-size: 2rem;
 }
 
 body {
 	background-color: rgb(20, 100, 37);
-	background-image: radial-gradient(
-    rgba(0, 150, 0, 0.75), black 130%);
+	background-image: radial-gradient(rgba(0, 150, 0, 0.75), black 130%);
 	margin: 5px;
 	padding: 5px;
 	text-align: center;
 	height: 100vh;
 	background-repeat: no-repeat;
-  	background-attachment: fixed;
-  	background-position: center;
+	background-attachment: fixed;
+	background-position: center;
 }
 
 h1 {
-	color:rgb(121, 3, 3);
+	color: rgb(121, 3, 3);
 	font-size: 180px;
 	margin: 5px;
 	font-style: italic;
 	font-weight: bold;
 	letter-spacing: 10px;
-	text-shadow: 4px 4px rgba(0,0,0,0.6);
+	text-shadow: 4px 4px rgba(0, 0, 0, 0.6);
 	text-align: center;
 	font-family: 'Six Caps', sans-serif;
 }
@@ -52,27 +79,27 @@ h1 {
 #message {
 	margin-bottom: 15px;
 	width: 100%;
-	color:rgb(180, 180, 180);
+	color: rgb(180, 180, 180);
 	font-size: 25px;
 	font-weight: bold;
 	text-align: center;
 	display: inline-block;
 	font-family: sans-serif;
 	opacity: 100%;
-	text-shadow: 2px 2px rgba(0,0,0,0.6);
+	text-shadow: 2px 2px rgba(0, 0, 0, 0.6);
 }
 
 .score {
 	margin: 10px;
 	width: 100%;
-	color:rgb(180, 180, 180);
+	color: rgb(180, 180, 180);
 	font-size: 35px;
 	font-weight: bold;
 	text-align: center;
 	display: inline;
 	font-family: sans-serif;
 	opacity: 100%;
-	text-shadow: 2px 2px rgba(0,0,0,0.6);
+	text-shadow: 2px 2px rgba(0, 0, 0, 0.6);
 	margin-bottom: 20px;
 }
 
@@ -93,11 +120,11 @@ h1 {
 .button {
 	background-color: lightgray;
 	width: 130px;
-	text-align:center;
+	text-align: center;
 	font-size: 20px;
 	padding: 10px;
 	margin: 10px;
-	box-shadow: 0 12px 18px 0 rgba(0,0,0,0.4);
+	box-shadow: 0 12px 18px 0 rgba(0, 0, 0, 0.4);
 	display: inline-block;
 }
 
@@ -115,12 +142,12 @@ h1 {
 }
 
 #deckCount {
-	color:rgb(180, 180, 180);
+	color: rgb(180, 180, 180);
 	font-size: 20px;
 	font-weight: bold;
 	font-family: sans-serif;
 	margin: 30px;
-	text-shadow: 2px 2px rgba(0,0,0,0.6);
+	text-shadow: 2px 2px rgba(0, 0, 0, 0.6);
 	margin-bottom: 50px;
 	position: static;
 	border-bottom-width: 10px;
@@ -141,7 +168,7 @@ h1 {
 	float: left;
 	width: 50%;
 	flex-wrap: row;
-	
+
 }
 
 #dealerContainer {
