@@ -16,11 +16,12 @@ box-sizing: border-box;
 	margin: 10px;
 	padding: 10px;
 	text-align: left;
-	height: 3.5em;
+	height: 5.5rem;
 	background-repeat: no-repeat;
   	background-attachment: left;
   	background-position: left;
 	font-family: 'Six Caps', sans-serif;
+	font-size: 2rem;
 }
 
 body {
@@ -34,7 +35,6 @@ body {
 	background-repeat: no-repeat;
   	background-attachment: fixed;
   	background-position: center;
-	
 }
 
 h1 {
