@@ -11,6 +11,18 @@
 box-sizing: border-box;
 }
 
+#returnLink {
+	color: rgb(253, 253, 253);
+	margin: 10px;
+	padding: 10px;
+	text-align: left;
+	height: 1.5em;
+	background-repeat: no-repeat;
+  	background-attachment: left;
+  	background-position: left;
+	font-family: 'Six Caps', sans-serif;
+}
+
 body {
 	background-color: rgb(20, 100, 37);
 	background-image: radial-gradient(
@@ -20,8 +32,8 @@ body {
 	text-align: center;
 	height: 100vh;
 	background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
+  	background-attachment: fixed;
+  	background-position: center;
 	
 }
 
