@@ -33,11 +33,10 @@
 }
 
 #header-logo-text {
-	font-size: 10%;
 	font-weight: bold; 
 	font-family: Helvetica;
-	height: 20vh;
-	font-size: 100px;
+	height: 10vh;
+	font-size: 50px;
 }
 
 #returnLink {
@@ -45,8 +44,8 @@
 	margin: 10px;
 	padding: 10px;
 	text-align: left;
-	height: 20vh;
-	width: 15%;
+	height: 10vh;
+	width: 50px;
 	background-repeat: no-repeat;
 	background-attachment: left;
 	background-position: left;
