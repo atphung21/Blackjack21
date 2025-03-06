@@ -1,11 +1,3 @@
-/*Sources
-- Took SVG card images from http://richardschneider.github.io/cardsJS/;
-- Deck idea from https://www.thatsoftwaredude.com/content/6417/how-to-code-blackjack-using-javascript;
-- Shuffle deck https://devdojo.com/devdojo/create-a-deck-of-cards-in-javascript;
-- https://www.youtube.com/watch?v=oT49KkhOv-Y
-*/
-
-
 //Global variables 
 let playerHand = []; // Player's Hand
 let dealerHand = []; // Dealer's Hand
@@ -93,7 +85,7 @@ function renderDealer() {
   }
 }
 
-//Gets the value of the player's or dealer's hand. Agruments to input are (playerHand, playerHandValue) & (dealerHand, dealerHandValue)
+//Gets the value of the player's or dealer's hand. Arguments to input are (playerHand, playerHandValue) & (dealerHand, dealerHandValue)
 function getHandValue(hand, value) {
   let handValue = hand.map(x => x.IntValue);
   let score = 0;
