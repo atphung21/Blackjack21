@@ -33,19 +33,22 @@
 }
 
 #header-logo-text {
+	display: flex;
 	font-weight: bold; 
 	font-family: Helvetica;
-	height: 10vh;
-	font-size: 50px;
+	height: 5vh;
+	font-size: 30px;
+	color: rgb(253, 253, 253);
 }
 
 #returnLink {
+	display: flex;
 	color: rgb(253, 253, 253);
 	margin: 10px;
 	padding: 10px;
 	text-align: left;
-	height: 10vh;
-	width: 50px;
+	height: 5vh;
+	width: 150px;
 	background-repeat: no-repeat;
 	background-attachment: left;
 	background-position: left;
