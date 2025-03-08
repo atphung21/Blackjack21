@@ -47,13 +47,13 @@
 	margin: 10px;
 	padding: 10px;
 	text-align: left;
-	height: 5vh;
-	width: 150px;
+	height: 1.5rem;
+	width: 1.5rem;
 	background-repeat: no-repeat;
 	background-attachment: left;
 	background-position: left;
 	font-family: 'Six Caps', sans-serif;
-	font-size: 50px;
+	font-size: 1.5rem;
 }
 
 body {
