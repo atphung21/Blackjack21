@@ -22,7 +22,6 @@
 #header-logo {
 	display: flex;
 	align-items: center;
-	gap: 10px;
 }
 
 #header-logo-image {
@@ -41,11 +40,10 @@
 #returnLink {
 	color: rgb(253, 253, 253);
 	margin: 10px;
-	padding: 10px;
-	text-align: left;
+	text-align: start;
 	min-width: 80px;
 	font-family: 'Six Caps', sans-serif;
-	font-size: 20px;
+	font-size: 30px;
 }
 
 body {
