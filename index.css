@@ -23,11 +23,13 @@
 	display: block;
 	align-items: center;
 	gap: 10px;
+	justify-content: "center";
 }
 
 #header-logo-image {
-	width: 70px;
-	border-radius: 10px;
+	width: 50px;
+	border-radius: 1rem;
+	justify-content: center;
 }
 
 #header-logo-text {
@@ -41,6 +43,8 @@
 #returnLink {
 	color: rgb(253, 253, 253);
 	margin: 10px;
+	padding: 10px;
+	text-align: left;
 	min-width: 80px;
 	font-family: 'Six Caps', sans-serif;
 	font-size: 20px;
