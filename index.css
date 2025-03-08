@@ -26,8 +26,8 @@
 }
 
 #header-logo-image {
-	width: 50px;
-	border-radius: 1rem;
+	width: 70px;
+	border-radius: 10px;
 }
 
 #header-logo-text {
@@ -41,7 +41,6 @@
 #returnLink {
 	color: rgb(253, 253, 253);
 	margin: 10px;
-	text-align: left;
 	min-width: 80px;
 	font-family: 'Six Caps', sans-serif;
 	font-size: 20px;
