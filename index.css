@@ -39,11 +39,11 @@
 }
 
 #returnLink {
-	color: rgb(253, 253, 253);
+	color: rgb(180, 180, 180);
 	margin-right: 100px;
 	text-align: left;
 	min-width: 80px;
-	font-family: 'Six Caps', sans-serif;
+	font-family: sans-serif;
 	font-size: 30px;
 }
 
