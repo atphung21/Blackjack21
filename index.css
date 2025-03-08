@@ -20,14 +20,14 @@
 }
 
 #header-logo {
-	display: flex;
+	display: block;
 	align-items: center;
-	gap: 1rem;
+	gap: 10px;
 	justify-content: "center";
 }
 
 #header-logo-image {
-	width: 40px;
+	width: 50px;
 	border-radius: 1rem;
 	justify-content: center;
 }
@@ -47,12 +47,12 @@
 	padding: 10px;
 	text-align: left;
 	height: 20px;
-	width: 80px;
+	min-width: 80px;
 	background-repeat: no-repeat;
 	background-attachment: left;
 	background-position: left;
 	font-family: 'Six Caps', sans-serif;
-	font-size: 40px;
+	font-size: 30px;
 }
 
 body {
