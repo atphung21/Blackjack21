@@ -23,17 +23,14 @@
 	display: block;
 	align-items: center;
 	gap: 10px;
-	justify-content: "center";
 }
 
 #header-logo-image {
 	width: 50px;
 	border-radius: 1rem;
-	justify-content: center;
 }
 
 #header-logo-text {
-	display: flex;
 	font-weight: bold; 
 	font-family: Helvetica;
 	height: 5vh;
@@ -44,15 +41,10 @@
 #returnLink {
 	color: rgb(253, 253, 253);
 	margin: 10px;
-	padding: 10px;
 	text-align: left;
-	height: 20px;
 	min-width: 80px;
-	background-repeat: no-repeat;
-	background-attachment: left;
-	background-position: left;
 	font-family: 'Six Caps', sans-serif;
-	font-size: 30px;
+	font-size: 20px;
 }
 
 body {
