@@ -20,16 +20,14 @@
 }
 
 #header-logo {
-	display: block;
+	display: flex;
 	align-items: center;
 	gap: 10px;
-	justify-content: "center";
 }
 
 #header-logo-image {
 	width: 50px;
 	border-radius: 1rem;
-	justify-content: center;
 }
 
 #header-logo-text {
