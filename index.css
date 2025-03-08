@@ -43,7 +43,7 @@
 }
 
 #returnLink {
-	display: inline-flex;
+	display: inline;
 	color: rgb(253, 253, 253);
 	margin: 10px;
 	padding: 10px;
@@ -54,7 +54,7 @@
 	background-attachment: left;
 	background-position: left;
 	font-family: 'Six Caps', sans-serif;
-	font-size: 25px;
+	font-size: 40px;
 }
 
 body {
