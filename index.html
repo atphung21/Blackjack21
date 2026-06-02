@@ -1,63 +1,224 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Professional Blackjack demo by ATP Software Consulting Services"
+    />
+    <title>Blackjack | ATP Consulting Services, LLC.</title>
+    <link rel="icon" href="cards/BLUE_BACK.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script>
+      if (window.self !== window.top) {
+        document.documentElement.classList.add("is-embedded");
+      }
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="site-header__back" href="/" target="_top" rel="noopener">
+        ← ATP Consulting Services, LLC.
+      </a>
+      <div class="site-header__brand">
+        <span class="site-header__eyebrow">Demo project</span>
+        <h1 class="site-header__title">ATP Blackjack</h1>
+      </div>
+      <p class="site-header__credit">
+        Built by ATP Software Consulting Services, LLC.
+      </p>
+    </header>
 
-<head>
-  <title>Enjoy Playing Blackjack!</title>
+    <main class="game-layout">
+      <aside class="panel panel--stats" aria-label="Session statistics">
+        <h2 class="panel__title">Session stats</h2>
+        <dl class="stats-list">
+          <div>
+            <dt>Hands</dt>
+            <dd id="stat-played">0</dd>
+          </div>
+          <div>
+            <dt>Wins</dt>
+            <dd id="stat-wins">0</dd>
+          </div>
+          <div>
+            <dt>Losses</dt>
+            <dd id="stat-losses">0</dd>
+          </div>
+          <div>
+            <dt>Blackjacks</dt>
+            <dd id="stat-blackjacks">0</dd>
+          </div>
+        </dl>
+        <button
+          type="button"
+          class="btn btn--ghost btn--small"
+          id="btn-reset-stats"
+        >
+          Reset stats
+        </button>
+        <p class="panel__hint">Stats saved in your browser.</p>
+      </aside>
 
-  <link rel="stylesheet" href="index.css" type="text/css">
-  <link rel="icon" type="img/jpg" href="./blackjack-icon.jpeg">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
-  </script>
-</head>
+      <section class="table" aria-label="Blackjack table">
+        <div class="table__rail">
+          <div class="bankroll">
+            <div>
+              <span class="bankroll__label">Chips</span>
+              <strong id="chip-balance" class="bankroll__value">$1,000</strong>
+            </div>
+            <div>
+              <span class="bankroll__label">Bet</span>
+              <strong
+                id="current-bet"
+                class="bankroll__value bankroll__value--bet"
+                >$50</strong
+              >
+            </div>
+            <div>
+              <span class="bankroll__label">Cards left</span>
+              <strong id="deck-count" class="bankroll__value">52</strong>
+            </div>
+          </div>
+          <button
+            type="button"
+            class="btn btn--ghost btn--small"
+            id="btn-reset-chips"
+          >
+            Reset chips
+          </button>
+        </div>
 
+        <p
+          id="game-message"
+          class="game-message"
+          role="status"
+          aria-live="polite"
+        >
+          Place your bet and press Deal to start.
+        </p>
 
-<header id="header">
-  <div id="returnLink">
-    <a href="#" id="returnLink" onClick="history.go(-1); return false;">Return to Home Page</a>
-  </div>
-  <div id="header-logo">
-    <h1 id="header-logo-text">ATP SOFTWARE CONSULTING SERVICES</h1>
-  </div>
-</header>
+        <div class="hand hand--dealer">
+          <div class="hand__header">
+            <h2>Dealer</h2>
+            <span id="dealer-score" class="hand__score">—</span>
+          </div>
+          <div id="dealer-cards" class="hand__cards"></div>
+        </div>
 
-<body>
+        <div id="insurance-panel" class="insurance-panel" hidden>
+          <p class="insurance-panel__text">
+            Dealer shows Ace — take insurance (half bet, pays 2:1)?
+          </p>
+          <div class="insurance-panel__actions">
+            <button type="button" class="btn btn--gold" id="btn-insurance-yes">
+              Yes (I)
+            </button>
+            <button type="button" class="btn btn--ghost" id="btn-insurance-no">
+              No
+            </button>
+          </div>
+        </div>
 
-  <h1>Blackjack</h1>
+        <div class="hand hand--player">
+          <div class="hand__header">
+            <h2>Player</h2>
+            <span id="player-score" class="hand__score">—</span>
+          </div>
+          <div id="player-hands" class="player-hands"></div>
+        </div>
 
-  <div id="message">Ready to play Blackjack? Press 'New Game' to start!</div>
+        <div class="betting" aria-label="Place bet">
+          <p class="betting__label">Select bet</p>
+          <div class="chips">
+            <button type="button" class="chip" data-bet="25">$25</button>
+            <button type="button" class="chip" data-bet="50">$50</button>
+            <button type="button" class="chip chip--active" data-bet="100">
+              $100
+            </button>
+            <button type="button" class="chip" data-bet="250">$250</button>
+            <button type="button" class="chip" data-bet="500">$500</button>
+          </div>
+          <div class="betting__adjust">
+            <button
+              type="button"
+              class="btn btn--ghost btn--small"
+              id="btn-bet-minus"
+            >
+              − $25
+            </button>
+            <button
+              type="button"
+              class="btn btn--ghost btn--small"
+              id="btn-bet-plus"
+            >
+              + $25
+            </button>
+            <button
+              type="button"
+              class="btn btn--ghost btn--small"
+              id="btn-max-bet"
+            >
+              Max bet
+            </button>
+          </div>
+        </div>
 
-  <div class="score">
-    <div class="playerScore">
-      <p></p><span id="playerHandValue"></span>
-    </div>
-    <div class="dealerScore"><span id="dealerHandValue"></span></div>
-  </div>
-  </div>
+        <div class="actions" aria-label="Game actions">
+          <button type="button" class="btn btn--primary" id="btn-deal">
+            Deal
+          </button>
+          <button type="button" class="btn" id="btn-hit" disabled>Hit</button>
+          <button type="button" class="btn" id="btn-stand" disabled>
+            Stand
+          </button>
+          <button type="button" class="btn btn--gold" id="btn-double" disabled>
+            Double
+          </button>
+          <button type="button" class="btn btn--gold" id="btn-split" disabled>
+            Split
+          </button>
+          <button type="button" class="btn btn--success" id="btn-next" disabled>
+            Next hand
+          </button>
+          <button type="button" class="btn btn--ghost" id="btn-sound-toggle">
+            Sound: On
+          </button>
+        </div>
 
-  <div id="div1"></div>
+        <p class="shortcuts">
+          <kbd>D</kbd> Deal · <kbd>H</kbd> Hit · <kbd>S</kbd> Stand ·
+          <kbd>O</kbd> Double · <kbd>P</kbd> Split · <kbd>I</kbd> Insurance ·
+          <kbd>N</kbd> Next
+        </p>
+      </section>
 
-  <div id="blackjack-table">
-    <div id="playerContainer">
-    </div>
-    <div id="dealerContainer">
-    </div>
-  </div>
-  <div id="hitStay" class="hitStay">
-    <button disabled id="hitButton" class="button hit" onclick="hitCard(playerHand)">Hit</button>
-    <button disabled id="standButton" class="button stand" onclick="stay()">Stand</button>
-  </div>
+      <aside class="panel panel--rules" aria-label="Rules">
+        <h2 class="panel__title">House rules</h2>
+        <ul class="rules-list">
+          <li>Blackjack pays <strong>3:2</strong></li>
+          <li>Dealer stands on <strong>17</strong></li>
+          <li>Double down on first two cards</li>
+          <li>Split pairs (one split per hand)</li>
+          <li>Insurance when dealer shows Ace (2:1)</li>
+          <li>Deck reshuffles under 20 cards</li>
+        </ul>
+        <p class="panel__hint">
+          This demo showcases custom development by
+          <a href="/" target="_top" rel="noopener"
+            >ATP Consulting Services, LLC.</a
+          >.
+        </p>
+      </aside>
+    </main>
 
-  <div class="new-game">
-    <button id="newGameButton" class="button" onclick="newGame()">New Game</button>
-  </div>
-
-  <div id="deckCount"><span class="deckCount"></span></div>
-
-
-
-  <script src="index.js">
-  </script>
-
-</body>
-
+    <script type="module" src="js/main.js"></script>
+  </body>
 </html>
